@@ -21,11 +21,11 @@ class Event(models.Model):
     website = models.URLField()
     registration = models.URLField()
     description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='')
 
 class Video(models.Model):
     name = models.CharField(max_length=100)
     event = models.ForeignKey(Event, on_delete=models.CASCADE,related_name='Videos')
     date = models.DateTimeField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='')
     video = models.FileField()
