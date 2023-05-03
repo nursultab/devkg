@@ -5,41 +5,44 @@ from mainapp.models import(
 )
 
 
-class CompanySerializer(serializers.ModelSerializer):
+class VideoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Company
+        model = Video
         fields = (
-            'id','name','logo', 'description',
-            'telegram','whatsapp', 
+          'id','name','event',
+          'date','image','video',  
 )
-
-
-class JobSerializer(serializers.ModelSerializer):
-    # school_name = serializers.ReadOnlyField(source='school.name') 
-    company = CompanySerializer(read_only=True, many=True)       
-    class Meta:
-        model = Job
-        fields = (
-            'id','company','position',
-            'salary','type',
-)
-
 
 class EventSerializer(serializers.ModelSerializer):
-    job= JobSerializer(read_only=True, many=True)
+    videos= VideoSerializer(read_only=True, many=True)
     class Meta:
         model = Event
         fields = (
             'id', 'name','job','location', 
             'date','website' ,'registration',
-            'description','image',
+            'description','image','videos',
 )
 
-class VideotSerializer(serializers.ModelSerializer):
-    event = EventSerializer(read_only=True, many=True)
+class JobSerializer(serializers.ModelSerializer):
+    events = EventSerializer(read_only=True, many=True)       
     class Meta:
-        model = Video
+        model = Job
         fields = (
-            'id','name','event',
-            'date','image','video',
+            'id','company','position',
+            'salary','type','events',
 )
+
+class CompanySerializer(serializers.ModelSerializer):
+    jobs = JobSerializer(read_only=True, many=True)
+    class Meta:
+        model = Company
+        fields = (
+            'id','name','logo', 'description',
+            'telegram','whatsapp','jobs',
+)
+
+
+
+
+
+

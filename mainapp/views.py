@@ -5,7 +5,11 @@ from mainapp.models import (
 )
 
 from mainapp.serializers import(
-    CompanySerializer,
+    JobSerializer,
+    CompanySerializer, 
+    EventSerializer,
+    VideoSerializer,
+
 )
 
 class CompanyView(ModelViewSet):
@@ -13,29 +17,16 @@ class CompanyView(ModelViewSet):
     serializer_class=CompanySerializer
 
 
-from mainapp.serializers import(
-    JobSerializer,
-)
-
 class JobView(ModelViewSet):
     queryset=Job.objects.all()
     serializer_class=JobSerializer
 
 
 
-
-from mainapp.serializers import(
-    EventSerializer,
-)
-
 class EventView(ModelViewSet):
     queryset=Event.objects.all()
     serializer_class=EventSerializer
 
-from mainapp.serializers import(
-    VideotSerializer,
-)
-
 class VideoView(ModelViewSet):
     queryset=Video.objects.all()
-    serializer_class=VideotSerializer
+    serializer_class=VideoSerializer

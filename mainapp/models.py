@@ -27,5 +27,5 @@ class Video(models.Model):
     name = models.CharField(max_length=100)
     event = models.ForeignKey(Event, on_delete=models.CASCADE,related_name='Videos')
     date = models.DateTimeField()
-    image = models.ImageField(upload_to='')
-    video = models.FileField()
+    image = models.ImageField(upload_to='media')
+    video = models.FileField(upload_to='')
