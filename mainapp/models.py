@@ -7,6 +7,19 @@ class Company(models.Model):
     telegram = models.URLField(blank=True)
     whatsapp = models.URLField(blank=True)
 
+    @property
+    def event_amount(self):
+        return self.event_count()
+
+    @property
+    def job_amount(self):
+        return self.job_count()
+    
+    @property
+    def video_amount(self):
+        return self.video_count() 
+
+
 class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE,related_name='Jobs')
     position = models.CharField(max_length=255)
